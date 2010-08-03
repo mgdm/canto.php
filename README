@@ -13,3 +13,12 @@ http://code.google.com/p/canto-js/
 
 This PHP port is written by Michael Maclean <mgdm@php.net> with thanks
 to David Flanagan for the inspiration.
+
+
+Example
+=======
+
+$s = new CairoImageSurface(CairoFormat::ARGB32, 400, 400);
+$data = $c->moveTo(100, 100)
+            ->lineTo(200, 200, 200, 250, 100, 250, 100, 100)
+            ->stroke();

@@ -59,27 +59,42 @@ class Canto {
 		return $this;
 	}
 
-	public function stroke() {
+	public function stroke(array $params = null) {
 		$this->context->stroke();
 		return $this;
 	}
 
-    public function fill() {
+    public function fill(array $params = null) {
         $this->context->fill();
         return $this;
     }
 
-    public function toPng() {
-        $temp = fopen('php://temp', 'rw');
-        $this->surface->writeToPng($temp);
-        $filesize = ftell($temp);
-        rewind($temp);
-        $pngData = fread($temp, $filesize);
-        return $pngData;
+    public function toPng($filename = null) {
+        if ($filename != null) {
+            $this->surface->writeToPng($filename);
+            return $this;
+        } else {
+            $temp = fopen('php://temp', 'rw');
+            $this->surface->writeToPng($temp);
+            $filesize = ftell($temp);
+            rewind($temp);
+            $pngData = fread($temp, $filesize);
+            return $pngData;
+        }
+    }
+
+    public function save() {
+        $this->context->save();
+        return $this;
+    }
+
+    public function restore() {
+        $this->context->restore();
+        return $this;
     }
 
     public function toDataUrl() {
         $data = base64_encode($this->toPng());
-        return "data:image/png;base64," . $data;
+        return 'data:image/png;base64,' . $data;
     }
 }

@@ -19,6 +19,7 @@ Example
 =======
 
 $s = new CairoImageSurface(CairoFormat::ARGB32, 400, 400);
+$c = new Canto($s);
 $data = $c->moveTo(100, 100)
             ->lineTo(200, 200, 200, 250, 100, 250, 100, 100)
             ->stroke();

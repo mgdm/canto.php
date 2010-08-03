@@ -77,4 +77,9 @@ class Canto {
         $pngData = fread($temp, $filesize);
         return $pngData;
     }
+
+    public function toDataUrl() {
+        $data = base64_encode($this->toPng());
+        return "data:image/png;base64," . $data;
+    }
 }

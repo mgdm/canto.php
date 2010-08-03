@@ -13,22 +13,22 @@ class Canto {
 
 	public $r = 0;
 	public $g = 0;
-    public $b = 0;
+	public $b = 0;
 	public $strokeWidth = 1;
 
-    public $pattern = null;
+	public $pattern = null;
 
-    /**
-     * Constructor
-     * @param object c
-     */
+	/**
+	 * Constructor
+	 * @param object c
+	 */
 	public function __construct($c) {		
 		if ($c instanceof CairoSurface) {
 			$this->surface = $c;
 			$this->context = new CairoContext($this->surface);
 		} else if ($c instanceof CairoContext) {
 			$this->context = $c;
-            $this->surface = $this->context->getTarget();
+			$this->surface = $this->context->getTarget();
 		} else {
 			throw new InvalidArgumentException("Canto::__construct expects either a CairoSurface or a CairoContext");
 		}
@@ -69,37 +69,37 @@ class Canto {
 		return $this;
 	}
 
-    public function fill(array $params = null) {
-        $this->context->fill();
-        return $this;
-    }
+	public function fill(array $params = null) {
+		$this->context->fill();
+		return $this;
+	}
 
-    public function toPng($filename = null) {
-        if ($filename != null) {
-            $this->surface->writeToPng($filename);
-            return $this;
-        } else {
-            $temp = fopen('php://temp', 'rw');
-            $this->surface->writeToPng($temp);
-            $filesize = ftell($temp);
-            rewind($temp);
-            $pngData = fread($temp, $filesize);
-            return $pngData;
-        }
-    }
+	public function toPng($filename = null) {
+		if ($filename != null) {
+			$this->surface->writeToPng($filename);
+			return $this;
+		} else {
+			$temp = fopen('php://temp', 'rw');
+			$this->surface->writeToPng($temp);
+			$filesize = ftell($temp);
+			rewind($temp);
+			$pngData = fread($temp, $filesize);
+			return $pngData;
+		}
+	}
 
-    public function save() {
-        $this->context->save();
-        return $this;
-    }
+	public function save() {
+		$this->context->save();
+		return $this;
+	}
 
-    public function restore() {
-        $this->context->restore();
-        return $this;
-    }
+	public function restore() {
+		$this->context->restore();
+		return $this;
+	}
 
-    public function toDataUri() {
-        $data = base64_encode($this->toPng());
-        return 'data:image/png;base64,' . $data;
-    }
+	public function toDataUri() {
+		$data = base64_encode($this->toPng());
+		return 'data:image/png;base64,' . $data;
+	}
 }

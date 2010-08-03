@@ -40,7 +40,7 @@ class Canto {
 	}
 
 	public function closePath() {
-		$this->context->newPath();
+		$this->context->closePath();
 		return $this;
 	}
 
@@ -52,7 +52,7 @@ class Canto {
 	public function lineTo($x, $y) {
 		$argc = func_num_args();
 		
-		if (($argc % 2) != 0) {
+		if ($argc == 0 || ($argc % 2) != 0) {
 			throw new InvalidArgumentException("Canto::moveTo expects an even number of arguments");
 		}
 

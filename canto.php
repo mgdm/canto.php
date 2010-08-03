@@ -3,6 +3,7 @@
 /**
  * Implements the Canto.js API around Cairo instead of canvas.
  * Inspired by http://www.davidflanagan.com/2010/07/cantojs-an-impr.html
+ * @package Canto
  */
 
 class Canto {
@@ -17,6 +18,10 @@ class Canto {
 
     public $pattern = null;
 
+    /**
+     * Constructor
+     * @param object c
+     */
 	public function __construct($c) {		
 		if ($c instanceof CairoSurface) {
 			$this->surface = $c;

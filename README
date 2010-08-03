@@ -1,0 +1,15 @@
+Canto.PHP
+=========
+
+This is a port of the canto.js library for JavaScript to PHP. It wraps
+around the PECL/Cairo library to add a fluent API mostly matching that
+of the original API.
+
+canto.js original announcement:
+http://www.davidflanagan.com/2010/07/cantojs-an-impr.html
+
+Repository:
+http://code.google.com/p/canto-js/
+
+This PHP port is written by Michael Maclean <mgdm@php.net> with thanks
+to David Flanagan for the inspiration.

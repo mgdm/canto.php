@@ -98,7 +98,7 @@ class Canto {
         return $this;
     }
 
-    public function toDataUrl() {
+    public function toDataUri() {
         $data = base64_encode($this->toPng());
         return 'data:image/png;base64,' . $data;
     }

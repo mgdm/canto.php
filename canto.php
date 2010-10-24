@@ -88,9 +88,9 @@ class Canto {
 		} else if ($r instanceof CairoPattern) {
 			// We seem to be being passed a pattern
 			$this->context->setSource($r);
-		} else if (is_float($r)) {
+		} else if (is_numeric($r)) {
 			// We appear to be given an RGB value
-			if (is_float($a)) {
+			if (is_numeric($a)) {
 				$this->context->setSourceRGBA($r, $g, $b, $a);
 			} else {
 				$this->context->setSourceRGB($r, $g, $b);

@@ -78,6 +78,11 @@ class Canto {
 		$this->context->fill();
 		return $this;
 	}
+	
+	public function paint(array $params = null) {
+		$this->context->paint();
+		return $this;
+	}
 
 	public function setSource($r, $g = null, $b = null, $a = null) {
 		if ($r instanceof CairoSurface) {
@@ -100,6 +105,36 @@ class Canto {
 		return $this;
 	}
 
+	public function selectFontFace($fontDescription) {
+		$this->context->selectFontFace($fontDescription);
+		return $this;
+	}
+
+	public function selectFont($fontDescription) {
+		return $this->selectFontFace($fontDescription);
+		return $this;
+	}
+
+	public function setFontSize($size) {
+		$this->context->setFontSize($size);
+		return $this;
+	}
+
+	public function showText($text) {
+		$this->context->showText($text);
+		return $this;
+	}
+
+	public function save() {
+		$this->context->save();
+		return $this;
+	}
+
+	public function restore() {
+		$this->context->restore();
+		return $this;
+	}
+
 	public function toPng($filename = null) {
 		if ($filename != null) {
 			$this->surface->writeToPng($filename);
@@ -112,16 +147,6 @@ class Canto {
 			$pngData = fread($temp, $filesize);
 			return $pngData;
 		}
-	}
-
-	public function save() {
-		$this->context->save();
-		return $this;
-	}
-
-	public function restore() {
-		$this->context->restore();
-		return $this;
 	}
 
 	public function toDataUri() {

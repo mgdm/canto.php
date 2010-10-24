@@ -1,5 +1,10 @@
 <?php
 
+function Canto($context) {
+	$result = new Canto($context);
+	return $result;
+}
+
 /**
  * Implements the Canto.js API around Cairo instead of canvas.
  * Inspired by http://www.davidflanagan.com/2010/07/cantojs-an-impr.html
@@ -71,6 +76,27 @@ class Canto {
 
 	public function fill(array $params = null) {
 		$this->context->fill();
+		return $this;
+	}
+
+	public function setSource($r, $g = null, $b = null, $a = null) {
+		if ($r instanceof CairoSurface) {
+			// We appear to be being passed a surface to use
+			$x = $g !== null ? $g : 0;
+			$y = $b !== null ? $b : 0;
+			$this->context->setSourceSurface($r, $g, $b);
+		} else if ($r instanceof CairoPattern) {
+			// We seem to be being passed a pattern
+			$this->context->setSource($r);
+		} else if (is_float($r)) {
+			// We appear to be given an RGB value
+			if (is_float($a)) {
+				$this->context->setSourceRGBA($r, $g, $b, $a);
+			} else {
+				$this->context->setSourceRGB($r, $g, $b);
+			}
+		}
+
 		return $this;
 	}
 
